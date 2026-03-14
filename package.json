@@ -1,0 +1,27 @@
+{
+  "name": "@aux4/kb",
+  "version": "0.0.1",
+  "description": "Command-line interface (CLI) to manage a markdown-based knowledge base",
+  "type": "module",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/aux4/kb.git"
+  },
+  "keywords": [
+    "aux4",
+    "cli",
+    "knowledge",
+    "markdown"
+  ],
+  "author": "aux4 LLC",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.6",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "rollup": "^4.46.3"
+  }
+}

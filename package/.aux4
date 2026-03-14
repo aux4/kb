@@ -1,0 +1,181 @@
+{
+  "scope": "aux4",
+  "name": "kb",
+  "version": "0.1.1",
+  "description": "aux4 knowledge base manager",
+  "license": "Apache-2.0",
+  "git": "https://github.com/aux4/kb",
+  "tags": [
+    "aux4",
+    "kb",
+    "knowledge",
+    "markdown"
+  ],
+  "profiles": [
+    {
+      "name": "main",
+      "commands": [
+        {
+          "name": "kb",
+          "execute": [
+            "profile:kb"
+          ],
+          "help": {
+            "text": "aux4 knowledge base manager"
+          }
+        }
+      ]
+    },
+    {
+      "name": "kb",
+      "commands": [
+        {
+          "name": "add",
+          "execute": [
+            "node ${packageDir}/lib/aux4-kb.mjs add values(folder, topic, content, file, tags)"
+          ],
+          "help": {
+            "text": "Add a new knowledge entry",
+            "variables": [
+              {
+                "name": "topic",
+                "text": "Topic title",
+                "arg": true
+              },
+              {
+                "name": "folder",
+                "text": "Knowledge base folder path",
+                "default": ".knowledge"
+              },
+              {
+                "name": "content",
+                "text": "Markdown content",
+                "default": ""
+              },
+              {
+                "name": "file",
+                "text": "Path to markdown file for content",
+                "default": ""
+              },
+              {
+                "name": "tags",
+                "text": "Comma-separated tags",
+                "default": ""
+              }
+            ]
+          }
+        },
+        {
+          "name": "update",
+          "execute": [
+            "node ${packageDir}/lib/aux4-kb.mjs update values(folder, topic, content, file)"
+          ],
+          "help": {
+            "text": "Update an existing knowledge entry",
+            "variables": [
+              {
+                "name": "topic",
+                "text": "Topic title",
+                "arg": true
+              },
+              {
+                "name": "folder",
+                "text": "Knowledge base folder path",
+                "default": ".knowledge"
+              },
+              {
+                "name": "content",
+                "text": "New markdown content",
+                "default": ""
+              },
+              {
+                "name": "file",
+                "text": "Path to markdown file for content",
+                "default": ""
+              }
+            ]
+          }
+        },
+        {
+          "name": "remove",
+          "execute": [
+            "node ${packageDir}/lib/aux4-kb.mjs remove values(folder, topic)"
+          ],
+          "help": {
+            "text": "Remove a knowledge entry",
+            "variables": [
+              {
+                "name": "topic",
+                "text": "Topic title",
+                "arg": true
+              },
+              {
+                "name": "folder",
+                "text": "Knowledge base folder path",
+                "default": ".knowledge"
+              }
+            ]
+          }
+        },
+        {
+          "name": "search",
+          "execute": [
+            "node ${packageDir}/lib/aux4-kb.mjs search values(folder, query)"
+          ],
+          "help": {
+            "text": "Search the knowledge base",
+            "variables": [
+              {
+                "name": "query",
+                "text": "Search query",
+                "arg": true
+              },
+              {
+                "name": "folder",
+                "text": "Knowledge base folder path",
+                "default": ".knowledge"
+              }
+            ]
+          }
+        },
+        {
+          "name": "list",
+          "execute": [
+            "node ${packageDir}/lib/aux4-kb.mjs list values(folder)"
+          ],
+          "help": {
+            "text": "List all knowledge base entries",
+            "variables": [
+              {
+                "name": "folder",
+                "text": "Knowledge base folder path",
+                "default": ".knowledge"
+              }
+            ]
+          }
+        },
+        {
+          "name": "view",
+          "execute": [
+            "node ${packageDir}/lib/aux4-kb.mjs view values(folder, topic)"
+          ],
+          "help": {
+            "text": "View a knowledge base entry",
+            "variables": [
+              {
+                "name": "topic",
+                "text": "Topic title",
+                "arg": true
+              },
+              {
+                "name": "folder",
+                "text": "Knowledge base folder path",
+                "default": ".knowledge"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
