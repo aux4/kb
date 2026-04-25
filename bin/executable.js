@@ -6,6 +6,7 @@ import removeCommand from "./command/RemoveCommand.js";
 import searchCommand from "./command/SearchCommand.js";
 import listCommand from "./command/ListCommand.js";
 import viewCommand from "./command/ViewCommand.js";
+import linksCommand from "./command/LinksCommand.js";
 
 (async () => {
   const args = process.argv.slice(2);
@@ -30,6 +31,9 @@ import viewCommand from "./command/ViewCommand.js";
         break;
       case "view":
         await viewCommand(params);
+        break;
+      case "links":
+        await linksCommand(params);
         break;
       default:
         console.error(`Unknown action: ${action}`);
