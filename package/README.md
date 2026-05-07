@@ -156,46 +156,6 @@ The `index.md` file is a markdown table:
 | Docker Networking | docker-networking.md | docker,networking | 2026-03-11 | Docker uses bridge networks by default. |
 ```
 
-## Package manifest (.aux4)
-
-```json
-{
-  "scope": "aux4",
-  "name": "kb",
-  "version": "0.1.0",
-  "description": "aux4 knowledge base manager",
-  "tags": [
-    "aux4",
-    "kb",
-    "knowledge",
-    "markdown"
-  ],
-  "profiles": [
-    {
-      "name": "main",
-      "commands": [
-        {
-          "name": "kb",
-          "execute": ["profile:kb"],
-          "help": { "text": "aux4 knowledge base manager" }
-        }
-      ]
-    },
-    {
-      "name": "kb",
-      "commands": [
-        { "name": "add", "help": { "text": "Add a new knowledge entry" } },
-        { "name": "update", "help": { "text": "Update an existing knowledge entry" } },
-        { "name": "remove", "help": { "text": "Remove a knowledge entry" } },
-        { "name": "search", "help": { "text": "Search the knowledge base" } },
-        { "name": "list", "help": { "text": "List all knowledge base entries" } },
-        { "name": "view", "help": { "text": "View a knowledge base entry" } }
-      ]
-    }
-  ]
-}
-```
-
 ## License
 
 This package is licensed under the Apache License, Version 2.0.
