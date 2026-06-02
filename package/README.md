@@ -2,7 +2,7 @@
 
 aux4 knowledge base manager
 
-aux4/kb manages a markdown-based knowledge base stored in a local folder. It provides commands to add, update, remove, search, list, and view knowledge entries. Each entry is a markdown file, and an auto-maintained `index.md` serves as a table of contents.
+aux4/kb manages a markdown-based knowledge base stored in a local folder. It provides commands to add, update, remove, search, list, and view knowledge entries. Each entry is a markdown file, and an auto-maintained `index.json` tracks metadata, MD5 checksums, and cross-page references.
 
 ## Installation
 
@@ -46,6 +46,10 @@ aux4 kb view "Docker Networking"
 - [`aux4 kb search`](#kb-search) - Search the knowledge base
 - [`aux4 kb list`](#kb-list) - List all knowledge base entries
 - [`aux4 kb view`](#kb-view) - View a knowledge base entry
+- [`aux4 kb links`](#kb-links) - Show links between knowledge base entries
+- [`aux4 kb refs`](#kb-refs) - List references from a page to other pages
+- [`aux4 kb backrefs`](#kb-backrefs) - List pages that reference a given page
+- [`aux4 kb graph`](#kb-graph) - Generate a mermaid graph of page references
 
 ### kb add
 
@@ -135,25 +139,77 @@ Variables:
 aux4 kb view "Docker Networking"
 ```
 
+### kb refs
+
+List all pages that a given page references (outbound links).
+
+Variables:
+
+- `topic` (required, arg) - Topic title
+- `--folder` (optional, default: `.knowledge`) - Knowledge base folder path
+- `--render` (optional, default: `text`) - Output format (`text` or `json`)
+
+```bash
+aux4 kb refs "Docker"
+```
+
+### kb backrefs
+
+List all pages that reference a given page (inbound links / backlinks).
+
+Variables:
+
+- `topic` (required, arg) - Topic title
+- `--folder` (optional, default: `.knowledge`) - Knowledge base folder path
+- `--render` (optional, default: `text`) - Output format (`text` or `json`)
+
+```bash
+aux4 kb backrefs "Docker"
+```
+
+### kb graph
+
+Generate a mermaid graph of page references. Optionally focus on a single page and its neighbors.
+
+Variables:
+
+- `topic` (optional, arg) - Topic title (generates graph for specific page)
+- `--folder` (optional, default: `.knowledge`) - Knowledge base folder path
+- `--render` (optional, default: `text`) - Output format (`text` or `json`)
+
+```bash
+# Full graph
+aux4 kb graph
+
+# Graph focused on a page
+aux4 kb graph "Docker"
+```
+
 ## Knowledge Base Structure
 
 The knowledge base is stored as markdown files in a configurable folder (default `.knowledge/`):
 
 ```
 .knowledge/
-├── index.md              # Table of contents (auto-maintained)
+├── index.json            # Metadata index (auto-maintained)
 ├── docker-networking.md  # Individual entries
 └── go-error-handling.md
 ```
 
-The `index.md` file is a markdown table:
+The `index.json` file is a JSON array with metadata, MD5 checksums, and cross-page references:
 
-```markdown
-# Knowledge Base
-
-| Topic | File | Tags | Date | Summary |
-|-------|------|------|------|---------|
-| Docker Networking | docker-networking.md | docker,networking | 2026-03-11 | Docker uses bridge networks by default. |
+```json
+[
+  {
+    "topic": "Docker Networking",
+    "file": "docker-networking.md",
+    "tags": "docker,networking",
+    "date": "2026-03-11",
+    "summary": "Docker uses bridge networks by default.",
+    "md5": "a1b2c3d4e5f6...",
+    "references": ["go-error-handling.md"]
+  }
+]
 ```
 
 ## License

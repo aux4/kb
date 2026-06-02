@@ -7,6 +7,9 @@ import searchCommand from "./command/SearchCommand.js";
 import listCommand from "./command/ListCommand.js";
 import viewCommand from "./command/ViewCommand.js";
 import linksCommand from "./command/LinksCommand.js";
+import refsCommand from "./command/RefsCommand.js";
+import backrefsCommand from "./command/BackrefsCommand.js";
+import graphCommand from "./command/GraphCommand.js";
 
 (async () => {
   const args = process.argv.slice(2);
@@ -34,6 +37,15 @@ import linksCommand from "./command/LinksCommand.js";
         break;
       case "links":
         await linksCommand(params);
+        break;
+      case "refs":
+        await refsCommand(params);
+        break;
+      case "backrefs":
+        await backrefsCommand(params);
+        break;
+      case "graph":
+        await graphCommand(params);
         break;
       default:
         console.error(`Unknown action: ${action}`);

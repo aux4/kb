@@ -219,6 +219,97 @@
               }
             ]
           }
+        },
+        {
+          "name": "refs",
+          "execute": [
+            "node ${packageDir}/lib/aux4-kb.mjs refs values(folder, topic, render)"
+          ],
+          "help": {
+            "text": "List references from a page to other pages",
+            "variables": [
+              {
+                "name": "topic",
+                "text": "Topic title",
+                "arg": true
+              },
+              {
+                "name": "folder",
+                "text": "Knowledge base folder path",
+                "default": ".knowledge"
+              },
+              {
+                "name": "render",
+                "text": "Output format (text or json)",
+                "default": "text",
+                "options": [
+                  "text",
+                  "json"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "backrefs",
+          "execute": [
+            "node ${packageDir}/lib/aux4-kb.mjs backrefs values(folder, topic, render)"
+          ],
+          "help": {
+            "text": "List pages that reference a given page",
+            "variables": [
+              {
+                "name": "topic",
+                "text": "Topic title",
+                "arg": true
+              },
+              {
+                "name": "folder",
+                "text": "Knowledge base folder path",
+                "default": ".knowledge"
+              },
+              {
+                "name": "render",
+                "text": "Output format (text or json)",
+                "default": "text",
+                "options": [
+                  "text",
+                  "json"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "graph",
+          "execute": [
+            "node ${packageDir}/lib/aux4-kb.mjs graph values(folder, topic, render)"
+          ],
+          "help": {
+            "text": "Generate a mermaid graph of page references",
+            "variables": [
+              {
+                "name": "topic",
+                "text": "Topic title (optional, generates graph for specific page)",
+                "arg": true,
+                "default": ""
+              },
+              {
+                "name": "folder",
+                "text": "Knowledge base folder path",
+                "default": ".knowledge"
+              },
+              {
+                "name": "render",
+                "text": "Output format (text or json)",
+                "default": "text",
+                "options": [
+                  "text",
+                  "json"
+                ]
+              }
+            ]
+          }
         }
       ]
     }

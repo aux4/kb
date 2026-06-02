@@ -4,14 +4,12 @@
 
 ```beforeAll
 mkdir -p testdata-links
-cat > testdata-links/index.md << 'EOF'
-# Knowledge Base
-
-| Topic | File | Tags | Date | Summary |
-|-------|------|------|------|---------|
-| Docker | docker.md | infra | 2026-04-25 | Container runtime |
-| Kubernetes | kubernetes.md | infra | 2026-04-25 | Container orchestration |
-| Networking | networking.md | infra | 2026-04-25 | Network basics |
+cat > testdata-links/index.json << 'EOF'
+[
+  { "topic": "Docker", "file": "docker.md", "tags": "infra", "date": "2026-04-25", "summary": "Container runtime", "md5": "", "references": ["kubernetes.md", "networking.md"] },
+  { "topic": "Kubernetes", "file": "kubernetes.md", "tags": "infra", "date": "2026-04-25", "summary": "Container orchestration", "md5": "", "references": ["docker.md", "networking.md", "service-mesh.md"] },
+  { "topic": "Networking", "file": "networking.md", "tags": "infra", "date": "2026-04-25", "summary": "Network basics", "md5": "", "references": ["docker.md"] }
+]
 EOF
 
 cat > testdata-links/docker.md << 'EOF'
@@ -52,14 +50,12 @@ Graph: 3 pages, 6 links
 
 ```beforeAll
 mkdir -p testdata-links
-cat > testdata-links/index.md << 'EOF'
-# Knowledge Base
-
-| Topic | File | Tags | Date | Summary |
-|-------|------|------|------|---------|
-| Docker | docker.md | infra | 2026-04-25 | Container runtime |
-| Kubernetes | kubernetes.md | infra | 2026-04-25 | Container orchestration |
-| Networking | networking.md | infra | 2026-04-25 | Network basics |
+cat > testdata-links/index.json << 'EOF'
+[
+  { "topic": "Docker", "file": "docker.md", "tags": "infra", "date": "2026-04-25", "summary": "Container runtime", "md5": "", "references": ["kubernetes.md", "networking.md"] },
+  { "topic": "Kubernetes", "file": "kubernetes.md", "tags": "infra", "date": "2026-04-25", "summary": "Container orchestration", "md5": "", "references": ["docker.md"] },
+  { "topic": "Networking", "file": "networking.md", "tags": "infra", "date": "2026-04-25", "summary": "Network basics", "md5": "", "references": ["docker.md"] }
+]
 EOF
 
 cat > testdata-links/docker.md << 'EOF'
@@ -99,13 +95,11 @@ kubernetes.md*?
 
 ```beforeAll
 mkdir -p testdata-links
-cat > testdata-links/index.md << 'EOF'
-# Knowledge Base
-
-| Topic | File | Tags | Date | Summary |
-|-------|------|------|------|---------|
-| Docker | docker.md | infra | 2026-04-25 | Container runtime |
-| Kubernetes | kubernetes.md | infra | 2026-04-25 | Container orchestration |
+cat > testdata-links/index.json << 'EOF'
+[
+  { "topic": "Docker", "file": "docker.md", "tags": "infra", "date": "2026-04-25", "summary": "Container runtime", "md5": "", "references": [] },
+  { "topic": "Kubernetes", "file": "kubernetes.md", "tags": "infra", "date": "2026-04-25", "summary": "Container orchestration", "md5": "", "references": ["docker.md"] }
+]
 EOF
 
 cat > testdata-links/docker.md << 'EOF'
@@ -139,12 +133,10 @@ kubernetes.md*?
 
 ```beforeAll
 mkdir -p testdata-links
-cat > testdata-links/index.md << 'EOF'
-# Knowledge Base
-
-| Topic | File | Tags | Date | Summary |
-|-------|------|------|------|---------|
-| Kubernetes | kubernetes.md | infra | 2026-04-25 | Orchestration |
+cat > testdata-links/index.json << 'EOF'
+[
+  { "topic": "Kubernetes", "file": "kubernetes.md", "tags": "infra", "date": "2026-04-25", "summary": "Orchestration", "md5": "", "references": ["service-mesh.md"] }
+]
 EOF
 
 cat > testdata-links/kubernetes.md << 'EOF'
@@ -172,13 +164,11 @@ service-mesh.md*?
 
 ```beforeAll
 mkdir -p testdata-links
-cat > testdata-links/index.md << 'EOF'
-# Knowledge Base
-
-| Topic | File | Tags | Date | Summary |
-|-------|------|------|------|---------|
-| Docker | docker.md | infra | 2026-04-25 | Runtime |
-| Orphan | orphan.md | misc | 2026-04-25 | Lonely page |
+cat > testdata-links/index.json << 'EOF'
+[
+  { "topic": "Docker", "file": "docker.md", "tags": "infra", "date": "2026-04-25", "summary": "Runtime", "md5": "", "references": [] },
+  { "topic": "Orphan", "file": "orphan.md", "tags": "misc", "date": "2026-04-25", "summary": "Lonely page", "md5": "", "references": [] }
+]
 EOF
 
 cat > testdata-links/docker.md << 'EOF'
@@ -212,13 +202,11 @@ orphan.md
 
 ```beforeAll
 mkdir -p testdata-links
-cat > testdata-links/index.md << 'EOF'
-# Knowledge Base
-
-| Topic | File | Tags | Date | Summary |
-|-------|------|------|------|---------|
-| Docker | docker.md | infra | 2026-04-25 | Runtime |
-| K8s | kubernetes.md | infra | 2026-04-25 | Orch |
+cat > testdata-links/index.json << 'EOF'
+[
+  { "topic": "Docker", "file": "docker.md", "tags": "infra", "date": "2026-04-25", "summary": "Runtime", "md5": "", "references": ["kubernetes.md"] },
+  { "topic": "K8s", "file": "kubernetes.md", "tags": "infra", "date": "2026-04-25", "summary": "Orch", "md5": "", "references": ["docker.md"] }
+]
 EOF
 
 cat > testdata-links/docker.md << 'EOF'
