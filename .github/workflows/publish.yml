@@ -55,6 +55,7 @@ jobs:
           strict: 'true'
 
   test-linux:
+    needs: [lint]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -75,6 +76,7 @@ jobs:
           build_command: npm run build
 
   test-darwin:
+    needs: [lint]
     runs-on: macos-latest
     steps:
       - name: Checkout repository
