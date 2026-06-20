@@ -103,7 +103,15 @@ aux4 kb remove "Docker Networking"
 
 ### kb search
 
-Search the knowledge base with case-insensitive text matching.
+Search the knowledge base. Entries are ranked by relevance using **BM25** across three fields, with title and tags weighted higher than the body:
+
+- **title/topic** (×3)
+- **tags** (×2)
+- **body** (×1)
+
+Because title and tags are indexed — not just the body — a query that matches only the topic or a tag still finds the entry (e.g. searching the tag word `preferences`, or the topic word `preference`, matches an entry titled "response style preference" even when the word is absent from the body). Queries and documents are tokenized and **stemmed** (Porter stemmer), so `preference`, `prefers`, `preferences`, and `preferred` all match one another; common stop words are ignored.
+
+Results are returned ranked by score (most relevant first), with the file header followed by the matching lines and surrounding context. Entries with no matching terms are dropped.
 
 Variables:
 
@@ -112,6 +120,18 @@ Variables:
 
 ```bash
 aux4 kb search "networking"
+```
+
+```bash
+aux4 kb search "preference"
+```
+
+```text
+
+## response-style-preference.md
+
+Line 1:
+Prefers concise, bullet-point answers
 ```
 
 ### kb list
