@@ -2,7 +2,7 @@ import fs from "fs";
 import { createEntry } from "../../lib/Entry.js";
 
 export default async function addCommand(params) {
-  const [folder, topic, content, file, tags] = params;
+  const [folder, topic, content, file, tags, page, section] = params;
 
   let entryContent = content ? content.replace(/\\n/g, "\n") : "";
   if (file && file !== "") {
@@ -17,6 +17,6 @@ export default async function addCommand(params) {
     throw new Error("Content is required (use --content or --file)");
   }
 
-  createEntry(folder || ".knowledge", topic, entryContent, tags || "");
+  createEntry(folder || ".knowledge", topic, entryContent, tags || "", page || "", section || "");
   console.log(`Added: ${topic}`);
 }

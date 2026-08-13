@@ -32,7 +32,7 @@
         {
           "name": "add",
           "execute": [
-            "node ${packageDir}/lib/aux4-kb.mjs add values(folder, topic, content, file, tags)"
+            "node ${packageDir}/lib/aux4-kb.mjs add values(folder, topic, content, file, tags, page, section)"
           ],
           "help": {
             "text": "Add a new knowledge entry",
@@ -60,6 +60,16 @@
               {
                 "name": "tags",
                 "text": "Comma-separated tags",
+                "default": ""
+              },
+              {
+                "name": "page",
+                "text": "Page (subfolder) to add the block to; the block is linked into the page spine (index.md)",
+                "default": ""
+              },
+              {
+                "name": "section",
+                "text": "Section heading in the page spine to append the block link under (created if absent)",
                 "default": ""
               }
             ]
@@ -167,6 +177,74 @@
                 "text": "Topic title",
                 "arg": true
               },
+              {
+                "name": "folder",
+                "text": "Knowledge base folder path",
+                "default": ".knowledge"
+              }
+            ]
+          }
+        },
+        {
+          "name": "page",
+          "execute": [
+            "node ${packageDir}/lib/aux4-kb.mjs page values(folder, page)"
+          ],
+          "help": {
+            "text": "Assemble and print a page from its spine (index.md), inlining each block",
+            "variables": [
+              {
+                "name": "page",
+                "text": "Page path to assemble (may be nested, e.g. form-engine/realtime)",
+                "arg": true
+              },
+              {
+                "name": "folder",
+                "text": "Knowledge base folder path",
+                "default": ".knowledge"
+              }
+            ]
+          }
+        },
+        {
+          "name": "move",
+          "execute": [
+            "node ${packageDir}/lib/aux4-kb.mjs move values(folder, topic, page, section)"
+          ],
+          "help": {
+            "text": "Relocate an existing entry into a page (subfolder), updating the spines and index",
+            "variables": [
+              {
+                "name": "topic",
+                "text": "Topic title of the entry to move",
+                "arg": true
+              },
+              {
+                "name": "folder",
+                "text": "Knowledge base folder path",
+                "default": ".knowledge"
+              },
+              {
+                "name": "page",
+                "text": "Target page path to move the entry into (may be nested, e.g. a/b/c)",
+                "default": ""
+              },
+              {
+                "name": "section",
+                "text": "Section heading in the target page spine to append the block link under (default: Blocks)",
+                "default": ""
+              }
+            ]
+          }
+        },
+        {
+          "name": "reindex",
+          "execute": [
+            "node ${packageDir}/lib/aux4-kb.mjs reindex values(folder)"
+          ],
+          "help": {
+            "text": "Rebuild index.json to match the markdown files on disk (non-destructive)",
+            "variables": [
               {
                 "name": "folder",
                 "text": "Knowledge base folder path",

@@ -6,10 +6,13 @@ import removeCommand from "./command/RemoveCommand.js";
 import searchCommand from "./command/SearchCommand.js";
 import listCommand from "./command/ListCommand.js";
 import viewCommand from "./command/ViewCommand.js";
+import pageCommand from "./command/PageCommand.js";
 import linksCommand from "./command/LinksCommand.js";
 import refsCommand from "./command/RefsCommand.js";
 import backrefsCommand from "./command/BackrefsCommand.js";
 import graphCommand from "./command/GraphCommand.js";
+import reindexCommand from "./command/ReindexCommand.js";
+import moveCommand from "./command/MoveCommand.js";
 
 (async () => {
   const args = process.argv.slice(2);
@@ -35,6 +38,9 @@ import graphCommand from "./command/GraphCommand.js";
       case "view":
         await viewCommand(params);
         break;
+      case "page":
+        await pageCommand(params);
+        break;
       case "links":
         await linksCommand(params);
         break;
@@ -46,6 +52,12 @@ import graphCommand from "./command/GraphCommand.js";
         break;
       case "graph":
         await graphCommand(params);
+        break;
+      case "reindex":
+        await reindexCommand(params);
+        break;
+      case "move":
+        await moveCommand(params);
         break;
       default:
         console.error(`Unknown action: ${action}`);
