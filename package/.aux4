@@ -11,6 +11,9 @@
     "knowledge",
     "markdown"
   ],
+  "system": [
+    ["test:node --version", "brew:node", "linux:nodejs"]
+  ],
   "profiles": [
     {
       "name": "main",
