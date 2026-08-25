@@ -15,7 +15,9 @@ aux4 kb search "<query>" [--folder <folder>]
 
 ## Description
 
-Searches all markdown entries (excluding `index.md`) and ranks them by relevance using BM25.
+Searches all markdown entries (excluding `index.md`) and ranks them by relevance using BM25. The search walks the whole folder tree — root plus every page subfolder at any depth — so foldered blocks are searched alongside flat root blocks.
+
+The ranking model is rebuilt from disk on every query (`index.json` plus the on-disk markdown files). There is no separate persisted search index, so a block written by `add`, `update`, `move`, or `remove` — including one nested inside a page — is reflected in the very next `kb search` with no manual reindex step.
 
 The search indexes three fields per entry and weights them differently:
 

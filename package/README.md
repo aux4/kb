@@ -124,6 +124,8 @@ Because title and tags are indexed — not just the body — a query that matche
 
 Results are returned ranked by score (most relevant first), with the file header followed by the matching lines and surrounding context. Entries with no matching terms are dropped.
 
+The ranking model is built from disk on every query — `search` reads `index.json` and walks the whole folder tree (root plus every page subfolder, at any depth) at query time. There is no separate persisted search index, so a block written by `add`, `update`, `move`, or `remove` — including one nested inside a page — is reflected in the very next `kb search` with no manual reindex step.
+
 Variables:
 
 - `query` (required, arg) - Search query
